@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SS_New</string>
+
+
+    <string name="smart">ہوشیار</string>
+    <string name="Switch">تبدیل کریں</string>
+    <string name="getStarted">شروع ہوجائیں</string>
+    <string name="storageUsage">ذخیرہ استعمال</string>
+    <string name="storageRem">بچا ہوا ذخیرہ</string>
+    <string name="send">بھیجیں</string>
+    <string name="receive">وصول کریں</string>
+    <string name="recent">حال ہی میں</string>
+    <string name="seeAll">سب دیکھیں</string>
+    <string name="home">ہوم</string>
+    <string name="files">فائلیں</string>
+    <string name="history">تاریخچہ</string>
+    <string name="select">منتخب کریں</string>
+    <string name="images">تصاویر</string>
+    <string name="videos">ویڈیوز</string>
+    <string name="documents">دستاویزات</string>
+    <string name="music">موسیقی</string>
+    <string name="apps">ایپس</string>
+    <string name="downloads">ڈاؤن لوڈز</string>
+    <string name="permissions">اجازتیں</string>
+    <string name="deniedPermissionsTxt">اجازتیں متعدد بار منسوخ ہو گئی ہیں، براہ کرم ایپ کی تمام خصوصیات استعمال کرنے کے لئے اجازتیں دینے کیلئے ترتیبات میں جائیں</string>
+    <string name="grantPermissions">اجازتیں دیں</string>
+    <string name="loadingDataWait">براہ کرم انتظار کریں..\nفائلیں حاصل ہو رہی ہیں</string>
+    <string name="apk">APK</string>
+    <string name="video">ویڈیوز</string>
+    <string name="image">تصویریں</string>
+    <string name="allFileSelected">تمام فائلیں منتخب ہیں</string>
+    <string name="total">کل</string>
+    <string name="selected">منتخب</string>
+    <string name="smartSwitch">ہوشیار سوئچ</string>
+    <string name="nothingFoundHere">یہاں کچھ فائلیں نہیں ملیں</string>
+    <string name="wifi">وائی فائی</string>
+    <string name="scanQR">QR اسکین کریں</string>
+    <string name="connection">کنکشن</string>
+    <string name="nearByDevices">قریبی ڈیوائسز</string>
+    <string name="searchingForNearbyDevices">قریبی ڈیوائسز تلاش ہو رہی ہیں</string>
+    <string name="hotspot">ہوٹ اسپاٹ</string>
+    <string name="receivingData">ڈیٹا مل رہا ہے</string>
+    <string name="receiving">مل رہا ہے</string>
+    <string name="done">ہو گیا</string>
+    <string name="completed">مکمل</string>
+    <string name="sendingData">ڈیٹا بھیج رہا ہے</string>
+    <string name="sending">بھیج رہا ہے</string>
+    <string name="document">دستاویزات</string>
+
+    <string name="deviceName">ڈیوائس کا نام</string>
+    <string name="hotSpot">ہوٹ اسپاٹ</string>
+    <string name="hotspotTxt">ہوٹ اسپاٹ کی خصوصیت کا استعمال کرنے کے لئے، آپ کو کسی عملی کارروائی کو کرنے کیلئے ایک سیم کارڈ کی ضرورت ہے۔ اگر آپ کے پاس ایک سیم کارڈ نہیں ہے تو براہ کرم <b>وائی فائی شیئرنگ</b> کا خیال کریں۔</string>
+    <string name="contine">جاری رکھیں</string>
+    <string name="goBack">واپس جائیں</string>
+    <string name="enableLocation">لوکیشن چالو کریں</string>
+    <string name="enableLocationTxt">براہ کرم لوکیشن سروسز فعال کریں اور دوبارہ کارروائی کا امتحان کریں۔</string>
+    <string name="goToSettings">ترتیبات میں جائیں</string>
+    <string name="cancel">منسوخ کریں</string>
+    <string name="swiftTransfer">ٹرانسفر</string>
+    <string name="transferTxt">براہ کرم یہ سنجیدگی سے دیکھیں کہ آپ نے بھیجنے والے پر پہلے ہی فائلیں منتخب کی ہیں تاکہ موصول کنندہ کے ہنر میں انتظار نہ ہو!</string>
+    <string name="wait">انتظار کریں</string>
+    <string name="permissionAndConsent">آپ کی رازیت معمولی معاملہ ہے۔ ہم آپ کے ڈیٹا کو محفوظ طریقے سے استعمال کرتے ہیں تاکہ آپ کے ایپ کا تجربہ بہتر ہو۔ براہ کرم یہ یقینی بنائیں، ہم آپ کی معلومات کو تیسرے افراد کے ساتھ شیئر کبھی نہیں کرتے۔</string>
+    <string name="noFilesFound">کوئی فائلیں نہیں ملیں</string>
+    <string name="exitTxt">کیا آپ یقینی ہیں کہ آپ اب نکلنا چاہتے ہیں؟</string>
+    <string name="Yes">ہاں</string>
+    <string name="no">نہیں</string>
+    <string name="ppU"><u>پرائیویسی پالیسی</u></string>
+    <string name="selectFileTxt">براہ کرم بھیجنے کے لئے فائلیں منتخب کریں</string>
+    <string name="noInternetTxt">انٹرنیٹ کنکشن نہیں ہے</string>
+    <string name="ensureWIFIOnTxt">براہ کرم یہ سنجیدہ دیکھیں کہ ایپ کسی بھی وائی فائی سے منسلک ہے</string>
+    <string name="enableLocationTxtToast">لوکیشن سروسز ضروری ہیں۔ براہ کرم انہیں چالو کریں اور پھر دوبارہ کوشش کریں۔</string>
+    <string name="somethingWrong">کچھ ٹھیک نہیں ہوا ہے، براہ کرم دوبارہ کوشش کریں</string>
+    <string name="errorInConnection">منسلکی میں خرابی</string>
+
+    <string name="pleaseTurnOnLocation">براہ کرم لوکیشن چالو کریں</string>
+    <string name="turnOnWifi">براہ کرم وائی فائی چالو کریں</string>
+    <string name="cantOpenFile">اس فائل کو کھولا نہیں جا سکتا</string>
+    <string name="language">زبان</string>
+    <string name="apply">لاگو کریں</string>
+
+</resources>

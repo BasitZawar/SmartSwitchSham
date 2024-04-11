@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/btnImages"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_60sdp"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:layout_marginVertical="@dimen/_5sdp"
+        android:background="@drawable/shape_round_corner_10"
+        android:elevation="@dimen/_5sdp"
+        android:padding="@dimen/_9sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imgHistory"
+            android:layout_width="@dimen/_45sdp"
+            android:layout_height="match_parent"
+            android:src="@drawable/icon_img_list"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvFileNameHistory"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="middle"
+            android:gravity="start"
+            android:fontFamily="@font/poppins_medium"
+            android:paddingHorizontal="@dimen/_5sdp"
+            android:singleLine="true"
+            android:text="@string/image"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@+id/tvCatNameHis"
+            app:layout_constraintEnd_toStartOf="@+id/btnMenu"
+            app:layout_constraintStart_toEndOf="@+id/imgHistory"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvCatNameHis"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_20sdp"
+            android:fontFamily="@font/poppins_regular"
+            android:paddingStart="@dimen/_5sdp"
+            android:text="@string/image"
+            android:gravity="center_vertical"
+            android:textSize="11sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imgHistory"
+            app:layout_constraintTop_toBottomOf="@+id/tvFileNameHistory" />
+
+        <TextView
+            android:id="@+id/tvDateHis"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_20sdp"
+            android:fontFamily="@font/poppins_regular"
+            android:gravity="center_vertical"
+            android:paddingStart="@dimen/_5sdp"
+            android:text="dd/MM/yyyy - hh:mm a"
+            android:textColor="@color/color_blue"
+            android:textSize="11sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tvCatNameHis"
+            app:layout_constraintEnd_toStartOf="@+id/btnMenu"
+            app:layout_constraintStart_toEndOf="@+id/tvCatNameHis"
+            app:layout_constraintTop_toTopOf="@+id/tvCatNameHis" />
+
+        <ImageView
+            android:id="@+id/btnMenu"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="match_parent"
+            android:paddingVertical="@dimen/_15sdp"
+            android:src="@drawable/icon_menu"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

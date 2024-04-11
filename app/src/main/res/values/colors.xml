@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="black_light">#242424</color>
+    <color name="white">#FFFFFFFF</color>
+
+
+    <color name="color_blue">#4A43EC</color>
+    <color name="color_blue_launcher">#5669FF</color>
+    <color name="color_sky_launcher">#46CDFB</color>
+    <color name="tab_selected">#FABA43</color>
+    <color name="tab_un">#D5D7DC</color>
+    <color name="btnTextColor">#8A8D9F</color>
+
+
+
+    <color name="sendSelectBg">#F59762</color>
+    <color name="sendUnSelectBg">#64F69D6C</color>
+
+    <color name="receiveSelectBg">#29D697</color>
+    <color name="receiveUnSelectBg">#6329D697</color>
+
+
+
+</resources>

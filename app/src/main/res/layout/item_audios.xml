@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/_60sdp"
+    android:padding="@dimen/_5sdp"
+    android:layout_marginHorizontal="@dimen/_10sdp"
+    android:layout_marginVertical="@dimen/_5sdp"
+    >
+
+    <ImageView
+        android:id="@+id/itemImgAudio"
+        android:layout_width="@dimen/_50sdp"
+        android:paddingVertical="@dimen/_5sdp"
+        android:layout_height="match_parent"
+        android:src="@drawable/icon_music_list"
+        app:layout_constraintBottom_toTopOf="@+id/itemAudioName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/itemAudioName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_regular"
+        android:ellipsize="middle"
+        android:gravity="center_vertical"
+        android:textSize="@dimen/_13sdp"
+        android:singleLine="true"
+        android:paddingHorizontal="@dimen/_5sdp"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/chkSelected"
+        app:layout_constraintStart_toEndOf="@+id/itemImgAudio"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvVideoSize"
+        android:layout_width="wrap_content"
+        android:visibility="gone"
+        android:layout_height="wrap_content"
+        android:ellipsize="middle"
+        android:paddingHorizontal="@dimen/_5sdp"
+        android:singleLine="true"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/itemImgAudio"
+        app:layout_constraintTop_toBottomOf="@+id/itemAudioName" />
+
+    <CheckBox
+        android:id="@+id/chkSelected"
+        android:layout_width="@dimen/_25sdp"
+        android:button="@drawable/checkbox_selector"
+        android:layout_height="@dimen/_25sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

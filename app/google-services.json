@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "919003001442",
+    "project_id": "smart-switch-b22bb",
+    "storage_bucket": "smart-switch-b22bb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:919003001442:android:c1d8f1812318bc6a5ad73b",
+        "android_client_info": {
+          "package_name": "com.smartswitch.datatransfer.ta.phonetransfer.smartshare"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGCCrTUpt6xtbjEO795pL4v56KAPM7ncU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

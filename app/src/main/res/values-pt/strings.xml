@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SS_New</string>
+
+
+    <string name="smart">Inteligente</string>
+    <string name="Switch">Alternar</string>
+    <string name="getStarted">Começar</string>
+    <string name="storageUsage">Uso de Armazenamento</string>
+    <string name="storageRem">Armazenamento Restante</string>
+    <string name="send">Enviar</string>
+    <string name="receive">Receber</string>
+    <string name="recent">Recente</string>
+    <string name="seeAll">Ver Todos</string>
+    <string name="home">Início</string>
+    <string name="files">Arquivos</string>
+    <string name="history">Histórico</string>
+    <string name="select">Selecionar</string>
+    <string name="images">Imagens</string>
+    <string name="videos">Vídeos</string>
+    <string name="documents">Documentos</string>
+    <string name="music">Música</string>
+    <string name="apps">Aplicativos</string>
+    <string name="downloads">Downloads</string>
+    <string name="permissions">Permissões</string>
+    <string name="deniedPermissionsTxt">Permissões negadas várias vezes. Por favor, vá para configurações e permita as permissões para usar todas as funcionalidades.</string>
+    <string name="grantPermissions">Conceder Permissões</string>
+    <string name="loadingDataWait">Por favor, aguarde..\nRecuperação de arquivos em andamento</string>
+    <string name="apk">APK</string>
+    <string name="video">Vídeos</string>
+    <string name="image">Imagens</string>
+    <string name="allFileSelected">Todos os Arquivos Selecionados</string>
+    <string name="total">Total</string>
+    <string name="selected">Selecionado</string>
+    <string name="smartSwitch">Interruptor Inteligente</string>
+    <string name="nothingFoundHere">Nenhum arquivo encontrado aqui</string>
+    <string name="wifi">Wi-Fi</string>
+    <string name="scanQR">Escanear QR</string>
+    <string name="connection">Conexão</string>
+    <string name="nearByDevices">Dispositivos Próximos</string>
+    <string name="searchingForNearbyDevices">Procurando por dispositivos próximos</string>
+    <string name="hotspot">Ponto de Acesso</string>
+    <string name="receivingData">Recebendo Dados</string>
+    <string name="receiving">Recebendo</string>
+    <string name="done">Concluído</string>
+    <string name="completed">Concluído</string>
+    <string name="sendingData">Enviando Dados</string>
+    <string name="sending">Enviando</string>
+    <string name="document">Documentos</string>
+
+    <string name="deviceName">Nome do Dispositivo</string>
+    <string name="hotSpot">Ponto de Acesso</string>
+    <string name="hotspotTxt">Para utilizar a funcionalidade de Ponto de Acesso, é necessário um cartão SIM. Se você não tiver um cartão SIM, considere usar <b>Compartilhamento de Wi-Fi</b> como alternativa.</string>
+    <string name="contine">Continuar</string>
+    <string name="goBack">Voltar</string>
+    <string name="enableLocation">Ativar Localização</string>
+    <string name="enableLocationTxt">Por favor, ative os serviços de localização e tente a ação novamente.</string>
+    <string name="goToSettings">Ir para Configurações</string>
+    <string name="cancel">Cancelar</string>
+    <string name="swiftTransfer">Transferir</string>
+    <string name="transferTxt">Certifique-se de já ter selecionado arquivos no remetente para evitar espera no receptor!</string>
+    <string name="wait">Aguardar</string>
+    <string name="permissionAndConsent">Sua privacidade é importante. Coletamos e usamos seus dados de forma segura para melhorar sua experiência no aplicativo. Fique tranquilo, nunca compartilhamos suas informações com terceiros.</string>
+    <string name="noFilesFound">Nenhum arquivo Encontrado</string>
+    <string name="exitTxt">Você tem certeza de que deseja sair agora?</string>
+    <string name="Yes">Sim</string>
+    <string name="no">Não</string>
+    <string name="ppU"><u>Política de Privacidade</u></string>
+    <string name="selectFileTxt">Por favor, selecione arquivos para enviar</string>
+    <string name="noInternetTxt">Sem conexão com a Internet</string>
+    <string name="ensureWIFIOnTxt">Certifique-se de que o aplicativo esteja conectado a qualquer rede Wi-Fi</string>
+    <string name="enableLocationTxtToast">Serviços de localização são necessários. Ative-os e tente novamente.</string>
+    <string name="somethingWrong">Algo deu errado. Por favor, tente novamente</string>
+    <string name="errorInConnection">Erro na conexão</string>
+    <string name="pleaseTurnOnLocation">Por favor, ative a localização</string>
+    <string name="turnOnWifi">Por favor, ative o Wi-Fi</string>
+    <string name="cantOpenFile">Não é possível abrir este arquivo</string>
+    <string name="language">Idioma</string>
+    <string name="apply">Aplicar</string>
+
+</resources>

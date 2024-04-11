@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/_60sdp"
+    android:padding="@dimen/_5sdp"
+    android:layout_marginHorizontal="@dimen/_10sdp"
+    android:layout_marginVertical="@dimen/_5sdp"
+    >
+
+    <ImageView
+        android:id="@+id/itemImgAudio"
+        android:layout_width="@dimen/_50sdp"
+        android:layout_height="match_parent"
+        android:paddingVertical="@dimen/_5sdp"
+        android:src="@drawable/icon_music_list"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/itemAudioName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="middle"
+        android:fontFamily="@font/poppins_regular"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="@dimen/_5sdp"
+        android:singleLine="true"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_13sdp"
+        app:layout_constraintBottom_toTopOf="@+id/itemAudioSize"
+        app:layout_constraintEnd_toStartOf="@+id/removeSelection"
+        app:layout_constraintStart_toEndOf="@+id/itemImgAudio"
+        app:layout_constraintTop_toTopOf="@+id/itemImgAudio" />
+
+
+    <TextView
+        android:id="@+id/itemAudioSize"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="middle"
+        android:fontFamily="@font/poppins_regular"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="@dimen/_5sdp"
+        android:singleLine="true"
+        android:textColor="#A5A0A0"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/itemImgAudio"
+        app:layout_constraintEnd_toStartOf="@+id/removeSelection"
+        app:layout_constraintStart_toEndOf="@+id/itemImgAudio"
+        app:layout_constraintTop_toBottomOf="@+id/itemAudioName" />
+
+
+
+    <TextView
+        android:id="@+id/tvVideoSize"
+        android:layout_width="wrap_content"
+        android:visibility="gone"
+        android:layout_height="wrap_content"
+        android:ellipsize="middle"
+        android:paddingHorizontal="@dimen/_5sdp"
+        android:singleLine="true"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/itemImgAudio"
+        app:layout_constraintTop_toBottomOf="@+id/itemAudioName" />
+
+    <ImageView
+        android:id="@+id/removeSelection"
+        android:layout_width="wrap_content"
+        android:paddingStart="@dimen/_15sdp"
+        android:layout_height="match_parent"
+        android:src="@drawable/icon_cross"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SS_New</string>
+
+    <string name="smart">ذكي</string>
+    <string name="Switch">تبديل</string>
+    <string name="getStarted">ابدأ</string>
+    <string name="storageUsage">استخدام التخزين</string>
+    <string name="storageRem">التخزين المتبقي</string>
+    <string name="send">إرسال</string>
+    <string name="receive">استقبال</string>
+    <string name="recent">حديث</string>
+    <string name="seeAll">رؤية الكل</string>
+    <string name="home">الرئيسية</string>
+    <string name="files">الملفات</string>
+    <string name="history">التاريخ</string>
+    <string name="select">اختيار</string>
+    <string name="images">الصور</string>
+    <string name="videos">الفيديوهات</string>
+    <string name="documents">المستندات</string>
+    <string name="music">الموسيقى</string>
+    <string name="apps">التطبيقات</string>
+    <string name="downloads">التنزيلات</string>
+    <string name="permissions">الصلاحيات</string>
+    <string name="deniedPermissionsTxt">تم رفض الصلاحيات عدة مرات، يرجى الانتقال إلى الإعدادات والسماح بالصلاحيات لاستخدام جميع الميزات</string>
+    <string name="grantPermissions">منح الصلاحيات</string>
+    <string name="loadingDataWait">يرجى الانتظار..\nجاري استرجاع الملف</string>
+    <string name="apk">APK</string>
+    <string name="video">الفيديوهات</string>
+    <string name="image">الصور</string>
+    <string name="allFileSelected">تم اختيار كل الملفات</string>
+    <string name="total">الإجمالي</string>
+    <string name="selected">المحدد</string>
+    <string name="smartSwitch">التبديل الذكي</string>
+    <string name="nothingFoundHere">لا توجد ملفات هنا</string>
+    <string name="wifi">واي فاي</string>
+    <string name="scanQR">مسح الرمز الاستجابي</string>
+    <string name="connection">الاتصال</string>
+    <string name="nearByDevices">الأجهزة القريبة</string>
+    <string name="searchingForNearbyDevices">جار البحث عن الأجهزة القريبة</string>
+    <string name="hotspot">نقطة ساخنة</string>
+    <string name="receivingData">جار استقبال البيانات</string>
+    <string name="receiving">جار الاستقبال</string>
+    <string name="done">تم</string>
+    <string name="completed">اكتمل</string>
+    <string name="sendingData">جار إرسال البيانات</string>
+    <string name="sending">جار الإرسال</string>
+    <string name="document">المستندات</string>
+
+    <string name="deviceName">اسم الجهاز</string>
+    <string name="hotSpot">نقطة ساخنة</string>
+    <string name="hotspotTxt">لاستخدام ميزة النقطة الساخنة، يلزم وجود بطاقة SIM لإجراء العمليات. إذا كنت لا تملك بطاقة SIM، يرجى النظر في استخدام ميزة <b>مشاركة الواي فاي</b> بدلاً من ذلك.</string>
+    <string name="contine">متابعة</string>
+    <string name="goBack">العودة</string>
+    <string name="enableLocation">تفعيل الموقع</string>
+    <string name="enableLocationTxt">الرجاء تفعيل خدمات الموقع والمحاولة مرة أخرى.</string>
+    <string name="goToSettings">الانتقال إلى الإعدادات</string>
+    <string name="cancel">إلغاء</string>
+    <string name="swiftTransfer">نقل</string>
+    <string name="transferTxt">يرجى التأكد من أنك قد حددت الملفات على الجهاز المرسل لتجنب الانتظار على جهاز الاستقبال!</string>
+    <string name="wait">انتظر</string>
+    <string name="permissionAndConsent">خصوصيتك تهمنا. نقوم بجمع واستخدام بياناتك بشكل آمن لتحسين تجربتك في التطبيق. كن واثقًا، لا نقوم بمشاركة معلوماتك مع أطراف ثالثة.\n\nقد نطلب الإذن لاستخدام ميزات مثل <b>الكاميرا</b>، <b>الموقع</b>، <b>الوصول إلى التخزين</b> و <b>إعدادات الكتابة</b>. خصوصيتك تهمنا، ونحن لا نشارك معلوماتك مع أطراف ثالثة.</string>
+    <string name="noFilesFound">لم يتم العثور على ملفات</string>
+    <string name="exitTxt">هل أنت متأكد من رغبتك في الخروج الآن؟</string>
+    <string name="Yes">نعم</string>
+    <string name="no">لا</string>
+    <string name="ppU"><u>سياسة الخصوصية</u></string>
+    <string name="selectFileTxt">الرجاء تحديد الملفات للإرسال</string>
+    <string name="noInternetTxt">لا يوجد اتصال بالإنترنت</string>
+    <string name="ensureWIFIOnTxt">الرجاء التأكد من أن التطبيق متصل بأي شبكة واي فاي</string>
+    <string name="enableLocationTxtToast">خدمات الموقع مطلوبة. يرجى تمكينها والمحاولة مرة أخرى.</string>
+    <string name="somethingWrong">حدث خطأ ما. يرجى المحاولة مرة أخرى</string>
+    <string name="errorInConnection">خطأ في الاتصال</string>
+    <string name="pleaseTurnOnLocation">الرجاء تشغيل خدمات الموقع</string>
+    <string name="turnOnWifi">الرجاء تشغيل الواي فاي</string>
+    <string name="cantOpenFile">لا يمكن فتح هذا الملف</string>
+    <string name="language">اللغة</string>
+    <string name="apply">تطبيق</string>
+
+
+</resources>

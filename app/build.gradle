@@ -1,0 +1,95 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'com.google.firebase.crashlytics'
+    id 'com.google.gms.google-services'
+
+}
+apply plugin: 'kotlin-kapt'
+
+android {
+    namespace 'com.example.ss_new'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.smartswitch.datatransfer.ta.phonetransfer.smartshare"
+        minSdk 24
+        targetSdk 34
+        versionCode 12
+        versionName "1.12"
+        project.archivesBaseName = "SS_New"+versionName
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    buildFeatures {
+        viewBinding true
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.core:core-ktx:1.12.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.10.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.lifecycle:lifecycle-process:2.7.0'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+
+
+    //sdp
+    implementation 'com.intuit.sdp:sdp-android:1.1.0'
+
+    //timber
+    implementation 'com.jakewharton.timber:timber:5.0.1'
+
+    //glide
+    implementation 'com.github.bumptech.glide:glide:4.16.0'
+
+    //ripple
+    implementation 'com.skyfishjy.ripplebackground:library:1.0.1'
+
+    //room
+    implementation "androidx.room:room-ktx:2.5.2"
+    implementation "androidx.room:room-runtime:2.5.2"
+    kapt "androidx.room:room-compiler:2.5.2"
+
+
+    //firebase
+    implementation platform('com.google.firebase:firebase-bom:31.1.0')
+    implementation("com.google.firebase:firebase-analytics-ktx")
+    implementation("com.google.firebase:firebase-crashlytics-ktx")
+
+    //gson
+    implementation 'com.google.code.gson:gson:2.10.1'
+
+    implementation 'me.dm7.barcodescanner:zxing:1.9.13'
+
+    //ads
+    implementation 'com.google.android.gms:play-services-ads:22.6.0'
+
+    implementation 'io.github.ParkSangGwon:tedpermission-normal:3.3.0'
+
+//    implementation("com.android.billingclient:billing:6.1.0")
+    implementation("com.android.billingclient:billing-ktx:6.1.0")
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0"
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
+    implementation("androidx.datastore:datastore:1.0.0")
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.7.0"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.7.0"
+    implementation 'com.google.android.ump:user-messaging-platform:2.1.0'
+}

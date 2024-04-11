@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/_80sdp"
+    android:layout_margin="@dimen/_1sdp"
+    >
+
+    <ImageView
+        android:id="@+id/imgVideoThumb"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imgVideos"
+        android:layout_width="wrap_content"
+        android:src="@drawable/icon_video_list"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/imgVideoThumb"
+        app:layout_constraintEnd_toEndOf="@+id/imgVideoThumb"
+        app:layout_constraintStart_toStartOf="@+id/imgVideoThumb"
+        app:layout_constraintTop_toTopOf="@+id/imgVideoThumb" />
+
+    <TextView
+        android:id="@+id/tvVideoName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:paddingHorizontal="@dimen/_5sdp"
+        android:maxLines="2"
+        android:maxHeight="@dimen/_30sdp"
+        android:visibility="gone"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/tvVideoSize"
+        app:layout_constraintEnd_toStartOf="@+id/chkSelected"
+        app:layout_constraintStart_toEndOf="@+id/imgVideoThumb"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvVideoSize"
+        android:layout_width="wrap_content"
+        android:visibility="gone"
+        android:layout_height="wrap_content"
+        android:ellipsize="middle"
+        android:paddingHorizontal="@dimen/_5sdp"
+        android:singleLine="true"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imgVideoThumb"
+        app:layout_constraintTop_toBottomOf="@+id/tvVideoName" />
+
+    <CheckBox
+        android:id="@+id/chkSelected"
+        android:layout_width="@dimen/_35sdp"
+        android:button="@drawable/checkbox_selector"
+        android:layout_height="@dimen/_35sdp"
+        app:layout_constraintEnd_toEndOf="@+id/imgVideoThumb"
+        app:layout_constraintTop_toTopOf="@+id/imgVideoThumb" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

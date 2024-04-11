@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/customview"
+    android:layout_width="match_parent"
+    android:layout_marginHorizontal="@dimen/_10sdp"
+    android:elevation="@dimen/_2sdp"
+    android:layout_marginVertical="@dimen/_5sdp"
+    android:paddingVertical="@dimen/_5sdp"
+    android:paddingHorizontal="@dimen/_8sdp"
+    android:background="@drawable/shape_round_8"
+    android:layout_height="@dimen/_50sdp">
+
+
+        <ImageView
+            android:id="@+id/imgCountries"
+            android:src="@drawable/german"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_35sdp"
+            android:padding="@dimen/_5sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+
+        <TextView
+            android:id="@+id/tvCountries"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/poppins_regular"
+            android:gravity="center_vertical|start"
+            android:text="sdfsds"
+            android:paddingHorizontal="@dimen/_10sdp"
+            android:textColor="#214948"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imgCountries"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

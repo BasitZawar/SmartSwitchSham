@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/shape_round_corner_10"
+    android:elevation="@dimen/_5sdp"
+    android:layout_marginHorizontal="@dimen/_10sdp"
+    android:layout_marginVertical="@dimen/_5sdp"
+    android:padding="@dimen/_7sdp"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_75sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:scaleType="centerCrop"
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/imgRecentThumb"
+        app:layout_constraintWidth_percent=".28" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_75sdp"
+        android:layout_marginHorizontal="@dimen/_7sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imgRecentThumb"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tvRecentFileDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
+            android:text="Wed, Apr 28 • 5:30 PM"
+            android:textColor="#5669FF"
+            android:textSize="11sp"
+            app:layout_constraintBottom_toTopOf="@+id/tvRecentFileTitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvRecentFileTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:fontFamily="@font/poppins_regular"
+            android:maxLines="2"
+            android:textColor="@color/black"
+            android:text="Wed, Apr 28 • 5:30 PM fsjj;hdsp;fjsdj j f[osdhf[sdjf[osd [os[dof s[djfpidsj f[jsdpfjs[dpf "
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@+id/tvRecentFileSize"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvRecentFileDate" />
+
+        <TextView
+            android:id="@+id/tvRecentFileSize"
+            android:textColor="#747688"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:fontFamily="@font/poppins_regular"
+            android:text="651454kb "
+            android:textSize="11sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvRecentFileTitle" />
+
+        <TextView
+            android:id="@+id/tvRecentFileType"
+            android:textColor="#747688"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:fontFamily="@font/poppins_regular"
+            android:text="651454kb "
+            android:paddingHorizontal="@dimen/_5sdp"
+            android:textSize="11sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tvRecentFileSize"
+            app:layout_constraintStart_toEndOf="@+id/tvRecentFileSize"
+            app:layout_constraintTop_toTopOf="@+id/tvRecentFileSize" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
