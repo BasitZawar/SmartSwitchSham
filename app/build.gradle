@@ -43,17 +43,17 @@ android {
 dependencies {
 
     implementation 'androidx.core:core-ktx:1.12.0'
-    implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.10.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'androidx.lifecycle:lifecycle-process:2.7.0'
+    implementation 'androidx.appcompat:appcompat:1.7.0'
+    implementation 'com.google.android.material:material:1.12.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.2.0'
+    implementation 'androidx.lifecycle:lifecycle-process:2.8.7'
     testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    androidTestImplementation 'androidx.test.ext:junit:1.2.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
 
 
     //sdp
-    implementation 'com.intuit.sdp:sdp-android:1.1.0'
+    implementation 'com.intuit.sdp:sdp-android:1.1.1'
 
     //timber
     implementation 'com.jakewharton.timber:timber:5.0.1'
@@ -65,20 +65,20 @@ dependencies {
     implementation 'com.skyfishjy.ripplebackground:library:1.0.1'
 
     //room
-    implementation "androidx.room:room-ktx:2.5.2"
-    implementation "androidx.room:room-runtime:2.5.2"
-    kapt "androidx.room:room-compiler:2.5.2"
+    implementation "androidx.room:room-ktx:2.6.1"
+    implementation "androidx.room:room-runtime:2.6.1"
+    kapt "androidx.room:room-compiler:2.6.1"
 
 
     //firebase
-    implementation platform('com.google.firebase:firebase-bom:31.1.0')
+    implementation platform('com.google.firebase:firebase-bom:33.7.0')
     implementation("com.google.firebase:firebase-analytics-ktx")
     implementation("com.google.firebase:firebase-crashlytics-ktx")
 
     //gson
     implementation 'com.google.code.gson:gson:2.10.1'
 
-    implementation 'me.dm7.barcodescanner:zxing:1.9.13'
+    implementation 'me.dm7.barcodescanner:zxing:1.9.8'
 
     //ads
     implementation 'com.google.android.gms:play-services-ads:22.6.0'
@@ -86,11 +86,11 @@ dependencies {
     implementation 'io.github.ParkSangGwon:tedpermission-normal:3.3.0'
 
 //    implementation("com.android.billingclient:billing:6.1.0")
-    implementation("com.android.billingclient:billing-ktx:6.1.0")
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0"
-    implementation("androidx.datastore:datastore-preferences:1.0.0")
-    implementation("androidx.datastore:datastore:1.0.0")
-    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.7.0"
-    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.7.0"
-    implementation 'com.google.android.ump:user-messaging-platform:2.1.0'
+    implementation("com.android.billingclient:billing-ktx:7.1.1")
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7"
+    implementation("androidx.datastore:datastore-preferences:1.1.1")
+    implementation("androidx.datastore:datastore:1.1.1")
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.8.7"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.8.7"
+    implementation 'com.google.android.ump:user-messaging-platform:3.1.0'
 }
