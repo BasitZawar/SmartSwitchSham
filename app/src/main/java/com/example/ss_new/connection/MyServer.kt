@@ -20,8 +20,7 @@ class MyServer(private val connectionInterface: ConnectionInterface) : Thread() 
             connectionInterface.onConnectionSuccessful()
 
         } catch (e: Exception) {
-            connectionInterface.onConnectionFailed()
-            Log.e("TAG", "Exception server 1: ${e.message}")
+            Log.e(TAG, "Exception server 1: ${e.message}")
         }
     }
 }

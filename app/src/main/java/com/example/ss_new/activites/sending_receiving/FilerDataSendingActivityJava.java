@@ -9,8 +9,8 @@ import android.net.wifi.p2p.WifiP2pManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Looper;
+import android.util.Log;
 import android.view.View;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
@@ -18,6 +18,7 @@ import com.example.ss_new.activites.DashboardActivity;
 import com.example.ss_new.activites.FileToSelectActivity;
 import com.example.ss_new.app_utils.AllFilesUtils;
 import com.example.ss_new.app_utils.data_classes.ss_models.TransferModel;
+import com.example.ss_new.connection.SocketHandler;
 import com.example.ss_new.database.DBHelper;
 import com.example.ss_new.database.FilesEntity;
 import com.example.ss_new.databinding.ActivitySenderBinding;
@@ -29,7 +30,6 @@ import java.io.FileInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
-
 import timber.log.Timber;
 
 public class FilerDataSendingActivityJava extends AppCompatActivity {
@@ -55,12 +55,14 @@ public class FilerDataSendingActivityJava extends AppCompatActivity {
     private int sentDownCount = 0;
     private int sentAppCount = 0;
     private int sentApkCount = 0;
+    Socket socket = null;
 
     private String toDayDate = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         binding = ActivitySenderBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
@@ -82,8 +84,7 @@ public class FilerDataSendingActivityJava extends AppCompatActivity {
     private void disconnectWifiDirect() {
         WifiP2pManager p2pManager = (WifiP2pManager) getSystemService(Context.WIFI_P2P_SERVICE);
         WifiP2pManager.Channel p2pChannel = p2pManager.initialize(this, Looper.getMainLooper(), null);
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
-                || ActivityCompat.checkSelfPermission(this, Manifest.permission.NEARBY_WIFI_DEVICES) != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED || ActivityCompat.checkSelfPermission(this, Manifest.permission.NEARBY_WIFI_DEVICES) != PackageManager.PERMISSION_GRANTED) {
             return;
         }
         p2pManager.requestGroupInfo(p2pChannel, group -> {
@@ -132,11 +133,15 @@ public class FilerDataSendingActivityJava extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... voids) {
             try {
-                Socket socket =new Socket();
+//                Socket socket = null;
+                socket = SocketHandler.INSTANCE.getSocket();
+
                 if (socket != null) {
                     ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
                     DataOutputStream dos = new DataOutputStream(oos);
                     dos.writeInt(mArrayList.size());
+                    Log.e("TESTTAG", "doInBackground sending array:" + mArrayList.size());
+                    Log.e("TESTTAG", "doInBackground sending mArrayList:" + mArrayList);
                     dos.writeUTF("video:" + selectedVideos + " img:" + selectedImages + " audio:" + selectedAudios + " doc:" + selectedDocs + " apps:" + selectedApps + " download:" + selectedDowns + " apk:" + selectedApks);
                     for (int i = 0; i < mArrayList.size(); i++) {
                         try {
@@ -155,12 +160,7 @@ public class FilerDataSendingActivityJava extends AppCompatActivity {
                                 } catch (Exception ex) {
                                     Timber.e("$TAG failure $ex");
                                 }
-                                DBHelper.Db.getDB(FilerDataSendingActivityJava.this).sSwitchDao().insertAllFiles(
-                                        new FilesEntity(0, mArrayList.get(i).getPath(), "", AllFilesUtils.INSTANCE.getFileType(new File(mArrayList.get(i).getPath())),
-                                                false,
-                                                true,
-                                                true, toDayDate)
-                                );
+                                DBHelper.Db.getDB(FilerDataSendingActivityJava.this).sSwitchDao().insertAllFiles(new FilesEntity(0, mArrayList.get(i).getPath(), "", AllFilesUtils.INSTANCE.getFileType(new File(mArrayList.get(i).getPath())), false, true, true, toDayDate));
 
                                 int finalI = i;
                                 runOnUiThread(() -> {
@@ -213,10 +213,15 @@ public class FilerDataSendingActivityJava extends AppCompatActivity {
                         socket.close();
                     } catch (Exception ex) {
                         binding.btnDone.setVisibility(View.VISIBLE);
+                        Log.e("TESTTAG", "doInBackground Exception1 :" + ex.getLocalizedMessage());
+
                     }
+                } else {
+                    Log.e("TESTTAG", "doInBackground: socket is null");
                 }
             } catch (Exception ex) {
                 binding.btnDone.setVisibility(View.VISIBLE);
+                Log.e("TESTTAG", "doInBackground Exception2 :" + ex.getLocalizedMessage());
             }
             return null;
         }
@@ -224,10 +229,13 @@ public class FilerDataSendingActivityJava extends AppCompatActivity {
 
     private void updateVideoSendingProgress() {
         runOnUiThread(() -> binding.progressVideo.setProgress(sentVideoCount));
+        Log.e(TAG, "updateVideoSendingProgress:progressVideo" + binding.progressVideo);
     }
 
     private void updateImageSendingProgress() {
         runOnUiThread(() -> binding.progressImage.setProgress(sentImgCount));
+        Log.e(TAG, "updateVideoSendingProgress:progressImage" + binding.progressImage);
+
     }
 
     private void updateDocSendingProgress() {
@@ -290,6 +298,7 @@ public class FilerDataSendingActivityJava extends AppCompatActivity {
             mArrayList.add(new TransferModel("Contacts", "Contacts", "Contacts"));
             return null;
         }
+
 
         @Override
         protected void onPostExecute(Void aVoid) {

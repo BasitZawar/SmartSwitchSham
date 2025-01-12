@@ -12,6 +12,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager.widget.ViewPager
 import com.example.ss_new.R
+import com.example.ss_new.activites.sending_receiving.ActivityWifiConnection
 import com.example.ss_new.adapters.FilinlingPagerAdapter
 import com.example.ss_new.databinding.ActivityFileSelectionBinding
 import com.example.ss_new.activites.sending_receiving.WifiOrHotSpotSelectionActivity
@@ -64,12 +65,30 @@ class FileToSelectActivity : AppCompatActivity() {
                 InterstitialHelper.showSplashInterstitial(this, object :
                     InterstitialHelper.InterstitialListener {
                     override fun onAdDismiss() {
-                        startActivity(
-                            WifiOrHotSpotSelectionActivity.getIntentForWifiOrHotSpotActivity(
-                                this@FileToSelectActivity,
-                                "old"
+                        if (AllFilesUtils.isWiFiConnected(this@FileToSelectActivity)) {
+                            startActivity(
+                                Intent(
+                                    this@FileToSelectActivity,
+                                    ActivityWifiConnection::class.java
+                                ).putExtra("user", "sender")
                             )
-                        )
+
+                            finish()
+                        } else {
+                            Toast.makeText(
+                                this@FileToSelectActivity,
+                                getString(R.string.ensureWIFIOnTxt),
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+
+
+//                        startActivity(
+//                            WifiOrHotSpotSelectionActivity.getIntentForWifiOrHotSpotActivity(
+//                                this@FileToSelectActivity,
+//                                "old"
+//                            )
+//                        )
                     }
                 })
             } else {

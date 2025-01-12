@@ -24,7 +24,7 @@ object InterstitialHelper {
     var isInterSplashLowCpmFailed = false
     var adCount = 0
     private val AD_UNIT_ID =
-        if (BuildConfig.DEBUG) "ca-app-pub-3940256099942544/1033173712" else "ca-app-pub-8472119687456393/4737249958"
+        if (BuildConfig.DEBUG) "ca-app-pub-3940256099942544/1033173712" else "ca-app-pub-8472119687456393/9967705574"
 
 
     fun showSplashInterstitial(activity: Activity, listener: InterstitialListener) {

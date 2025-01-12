@@ -17,7 +17,7 @@ import com.google.android.gms.ads.nativead.NativeAdView
 
 class NativeAdManager(var context: Context) {
 
-    private val AD_UNIT_ID = if (BuildConfig.DEBUG) "ca-app-pub-3940256099942544/2247696110" else "ca-app-pub-8472119687456393/7171841606"
+    private val AD_UNIT_ID = if (BuildConfig.DEBUG) "ca-app-pub-3940256099942544/2247696110" else "ca-app-pub-8472119687456393/8775416552"
 
     fun loadNative(activity: Activity, adLayout: LinearLayout) {
         val builder = AdLoader.Builder(activity, AD_UNIT_ID)

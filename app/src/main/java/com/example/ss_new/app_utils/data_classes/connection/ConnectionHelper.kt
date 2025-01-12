@@ -3,7 +3,7 @@ package com.example.ss_new.app_utils.data_classes.connection
 import android.content.IntentFilter
 import android.net.wifi.p2p.WifiP2pManager
 
-object ConnectionHelper {
+object  ConnectionHelper {
     fun getIntentFilter(): IntentFilter {
         val intentFilter = IntentFilter()
         intentFilter.addAction(WifiP2pManager.WIFI_P2P_STATE_CHANGED_ACTION)

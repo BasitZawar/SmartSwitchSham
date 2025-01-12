@@ -1,15 +1,20 @@
 package com.example.ss_new.activites.sending_receiving;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.net.MacAddress;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
 import android.net.wifi.WpsInfo;
 import android.net.wifi.p2p.WifiP2pConfig;
 import android.net.wifi.p2p.WifiP2pDevice;
 import android.net.wifi.p2p.WifiP2pInfo;
 import android.net.wifi.p2p.WifiP2pManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Looper;
 import android.util.Log;
@@ -17,6 +22,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.ss_new.adapters.recycler_adapter.WifiAvailableDeviceAdapter;
@@ -28,6 +34,8 @@ import com.example.ss_new.app_utils.data_classes.connection.Sockets;
 import com.example.ss_new.app_utils.data_classes.my_interfaces.MyClickCallbackInterface;
 import com.example.ss_new.app_utils.data_classes.my_interfaces.SuccessAndFailureInterface;
 import com.example.ss_new.databinding.ActivityWifiConnectionBinding;
+import com.nabinbhandari.android.permissions.PermissionHandler;
+import com.nabinbhandari.android.permissions.Permissions;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -60,17 +68,16 @@ public class WifiConnectionJava extends AppCompatActivity implements SuccessAndF
         binding = ActivityWifiConnectionBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        new NativeAdManager(this).loadNative(this, binding.adView);
+//        new NativeAdManager(this).loadNative(this, binding.adView);
 
         phone = getIntent().getStringExtra(phoneKey);
-
+//        initView();
         scanning();
         binding.btnBack.setOnClickListener(view -> {
             disconnectWifiDirect();
             onBackPressed();
         });
 
-        binding.refresh.setOnClickListener(view -> scanning());
 
      /*   adapter = new WifiAvailableDeviceAdapter(this, devicesArrayList, new MyClickCallbackInterface() {
             @Override
@@ -80,8 +87,8 @@ public class WifiConnectionJava extends AppCompatActivity implements SuccessAndF
         });*/
         Log.e("TESTTAG", "devicesArrayList " + devicesArrayList);
 
-        binding.recSearchedDevices.setLayoutManager(new LinearLayoutManager(this));
-        binding.recSearchedDevices.setAdapter(adapter);
+//        binding.recSearchedDevices.setLayoutManager(new LinearLayoutManager(this));
+//        binding.recSearchedDevices.setAdapter(adapter);
 
     }
 
@@ -107,34 +114,171 @@ public class WifiConnectionJava extends AppCompatActivity implements SuccessAndF
         scanDevices();
     }
 
+    @SuppressLint("HardwareIds")
+    public void scanDevices() {
+        Log.e(TAG, "scanDevices: called");
+        if (this != null) {
 
-    private void scanDevices() {
-        if (hasLocationPermission()) {
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED || ActivityCompat.checkSelfPermission(this, Manifest.permission.NEARBY_WIFI_DEVICES) != PackageManager.PERMISSION_GRANTED) {
-                // TODO: Consider calling
-                //    ActivityCompat#requestPermissions
-                // here to request the missing permissions, and then overriding
-                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                //                                          int[] grantResults)
-                // to handle the case where the user grants the permission. See the documentation
-                // for ActivityCompat#requestPermissions for more details.
-                return;
+            if (checkLocationPermission(this)) {
+                Log.e(TAG, "scanDevices: calle in if"+checkLocationPermission(this));
+
+            }else {
+                requestLocationPermission();
+                Log.e(TAG, "scanDevices: calle in else"+checkLocationPermission(this));
+
+                Toast.makeText(this, "else of permission", Toast.LENGTH_SHORT).show();
             }
-            p2pManager.discoverPeers(p2pChannel, new WifiP2pManager.ActionListener() {
-                @Override
-                public void onSuccess() {
-                    Log.e(TAG, "Discovery initiated successfully");
-                }
 
-                @Override
-                public void onFailure(int reason) {
-                    Log.e(TAG, "Discovery initiation failed: " + reason);
+            if (p2pManager != null && p2pChannel != null) {
+                p2pManager.discoverPeers(p2pChannel, new WifiP2pManager.ActionListener() {
+                    @Override
+                    public void onSuccess() {
+                    }
+
+                    @Override
+                    public void onFailure(int reason) {
+                    }
+                });
+            }
+
+            if (Build.VERSION.SDK_INT >= 33) {
+                WifiManager wifiManager = (WifiManager) this.getSystemService(Context.WIFI_SERVICE);
+                if (wifiManager != null) {
+                    WifiInfo wInfo = wifiManager.getConnectionInfo();
+                    String macAddress = wInfo.getMacAddress();
+                    if (p2pManager != null && p2pChannel != null) {
+                        p2pManager.setConnectionRequestResult(
+                                p2pChannel,
+                                MacAddress.fromString(macAddress),
+                                WifiP2pManager.CONNECTION_REQUEST_ACCEPT,
+                                new WifiP2pManager.ActionListener() {
+                                    @Override
+                                    public void onSuccess() {
+                                        Log.e("TESTTAG", "onSuccess: connection success For android 33");
+                                    }
+
+                                    @Override
+                                    public void onFailure(int reason) {
+                                        Log.e("TESTTAG", "onFailure: connection failed For android 33 " + reason);
+                                    }
+                                });
+                    }
                 }
-            });
-        } else {
-            Toast.makeText(this, "Please add location permissions from Settings>Apps>Smart Switch>Permissions", Toast.LENGTH_SHORT).show();
+            }
         }
     }
+    public boolean checkLocationPermission(Context context) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            int coarseLocationPermission = ContextCompat.checkSelfPermission(
+                    context, Manifest.permission.ACCESS_COARSE_LOCATION);
+            int fineLocationPermission = ContextCompat.checkSelfPermission(
+                    context, Manifest.permission.ACCESS_FINE_LOCATION);
+            int nearbyPermission = ContextCompat.checkSelfPermission(
+                    context, Manifest.permission.NEARBY_WIFI_DEVICES);
+
+            return coarseLocationPermission == PackageManager.PERMISSION_GRANTED
+                    && fineLocationPermission == PackageManager.PERMISSION_GRANTED
+                    && nearbyPermission == PackageManager.PERMISSION_GRANTED;
+        } else {
+            int coarseLocationPermission = ContextCompat.checkSelfPermission(
+                    context, Manifest.permission.ACCESS_COARSE_LOCATION);
+            int fineLocationPermission = ContextCompat.checkSelfPermission(
+                    context, Manifest.permission.ACCESS_FINE_LOCATION);
+
+            return coarseLocationPermission == PackageManager.PERMISSION_GRANTED
+                    && fineLocationPermission == PackageManager.PERMISSION_GRANTED;
+        }
+    }
+    public void requestLocationPermission() {
+        String[] permissions;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            permissions = new String[]{
+                    Manifest.permission.NEARBY_WIFI_DEVICES,
+                    Manifest.permission.ACCESS_COARSE_LOCATION,
+                    Manifest.permission.ACCESS_FINE_LOCATION
+            };
+        } else {
+            permissions = new String[]{
+                    Manifest.permission.ACCESS_COARSE_LOCATION,
+                    Manifest.permission.ACCESS_FINE_LOCATION
+            };
+        }
+
+        Permissions.check(this, permissions, null, null, new PermissionHandler() {
+            @Override
+            public void onGranted() {
+                Toast.makeText(WifiConnectionJava.this, "Location Granted", Toast.LENGTH_SHORT).show();
+
+            }
+
+            @SuppressLint("LongLogTag")
+            @Override
+            public void onDenied(Context context, ArrayList<String> deniedPermissions) {
+                 if (deniedPermissions != null) {
+                    for (String permission : deniedPermissions) {
+                        Log.e("TESTTAG deniedPermissions", permission);
+                    }
+                }
+                Toast.makeText(WifiConnectionJava.this, "Location Permissions required!", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+    }
+//    private void initView() {
+//        if (this != null) {
+//            adapter = new WifiAvailableDeviceAdapter(this, devicesArrayList, new ClickInterface() {
+//                @Override
+//                public void onItemClick(int position) {
+//                    // Uncomment the following block if needed
+//                    // if (userType != "sender")
+//                    // if (pairingSuccess) {
+//                    requestPairing(position);
+//                    // Log.e("TESTTAG", "onItemClick pairingSuccess iff: " + pairingSuccess);
+//                    // } else {
+//                    // Log.e("TESTTAG", "onItemClick pairingSuccess else: " + pairingSuccess);
+//                    // }
+//                    // else {
+//                    //     Toast.makeText(requireContext(),
+//                    //         "only receiver can request to connect",
+//                    //         Toast.LENGTH_SHORT).show();
+//                    // }
+//                }
+//            });
+//
+//            if (binding != null) {
+//                binding.recSearchedDevices.setLayoutManager(new LinearLayoutManager(this));
+//                binding.recSearchedDevices.setAdapter(adapter);
+//            }
+//        }
+//    }
+
+//    private void scanDevices() {
+//        if (hasLocationPermission()) {
+//            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED || ActivityCompat.checkSelfPermission(this, Manifest.permission.NEARBY_WIFI_DEVICES) != PackageManager.PERMISSION_GRANTED) {
+//                // TODO: Consider calling
+//                //    ActivityCompat#requestPermissions
+//                // here to request the missing permissions, and then overriding
+//                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+//                //                                          int[] grantResults)
+//                // to handle the case where the user grants the permission. See the documentation
+//                // for ActivityCompat#requestPermissions for more details.
+//                return;
+//            }
+//            p2pManager.discoverPeers(p2pChannel, new WifiP2pManager.ActionListener() {
+//                @Override
+//                public void onSuccess() {
+//                    Log.e(TAG, "Discovery initiated successfully");
+//                }
+//
+//                @Override
+//                public void onFailure(int reason) {
+//                    Log.e(TAG, "Discovery initiation failed: " + reason);
+//                }
+//            });
+//        } else {
+//            Toast.makeText(this, "Please add location permissions from Settings>Apps>Smart Switch>Permissions", Toast.LENGTH_SHORT).show();
+//        }
+//    }
 
     private void requestPairing(int pos) {
         WifiP2pDevice device = peersList.get(pos);
@@ -142,17 +286,7 @@ public class WifiConnectionJava extends AppCompatActivity implements SuccessAndF
         wifiConfig.deviceAddress = device.deviceAddress;
         wifiConfig.wps.setup = WpsInfo.PBC;
 
-        if (hasLocationPermission()) {
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED || ActivityCompat.checkSelfPermission(this, Manifest.permission.NEARBY_WIFI_DEVICES) != PackageManager.PERMISSION_GRANTED) {
-                // TODO: Consider calling
-                //    ActivityCompat#requestPermissions
-                // here to request the missing permissions, and then overriding
-                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                //                                          int[] grantResults)
-                // to handle the case where the user grants the permission. See the documentation
-                // for ActivityCompat#requestPermissions for more details.
-                return;
-            }
+        if (checkLocationPermission(this)) {
             p2pManager.connect(p2pChannel, wifiConfig, new WifiP2pManager.ActionListener() {
                 @Override
                 public void onSuccess() {
@@ -215,6 +349,7 @@ public class WifiConnectionJava extends AppCompatActivity implements SuccessAndF
         }
     };
 
+    @SuppressLint("NotifyDataSetChanged")
     public final WifiP2pManager.PeerListListener peerListListener = peerList -> {
         if (!peerList.getDeviceList().equals(peersList)) {
             peersList.clear();

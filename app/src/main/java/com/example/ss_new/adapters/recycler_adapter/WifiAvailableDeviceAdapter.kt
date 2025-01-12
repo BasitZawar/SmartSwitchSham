@@ -4,14 +4,14 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.ss_new.activites.sending_receiving.ClickInterface
+import com.example.ss_new.app_utils.data_classes.my_interfaces.MyClickCallbackInterface
 import com.example.ss_new.databinding.ItemWifiDirectBinding
 
 
 class WifiAvailableDeviceAdapter(
     private val context: Context,
     private val mArrayList: ArrayList<String>,
-    private val myClickCallbackInterface: ClickInterface
+    private val myClickCallbackInterface: MyClickCallbackInterface
 ) : RecyclerView.Adapter<WifiAvailableDeviceAdapter.MViewHolder>() {
 
 

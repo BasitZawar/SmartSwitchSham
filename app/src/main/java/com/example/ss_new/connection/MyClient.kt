@@ -15,7 +15,7 @@ class MyClient internal constructor(
     var mConnectionInterface = connectionInterface
     override fun run() {
         try {
-            socket.connect(InetSocketAddress(hostAddress, 8080), 500)
+            socket.connect(InetSocketAddress(hostAddress, 8080), 5000)
             SocketHandler.setSocket(socket)
             mConnectionInterface.onConnectionSuccessful()
 //            if (mType == "Sender") {
@@ -30,9 +30,10 @@ class MyClient internal constructor(
 //                mActivity.startActivity(Intent(mActivity, MyDataReceiverActivity::class.java))
 //                mActivity.finish()
 //            }
+
         } catch (e: Exception) {
-            mConnectionInterface.onConnectionFailed()
-            Log.e("TAG", "Exception Client: ${e.message}")
+
+            Log.e("abc", "Exception Client: ${e.message}")
         }
     }
 }

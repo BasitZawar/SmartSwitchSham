@@ -34,7 +34,7 @@ import kotlinx.coroutines.*
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.atomic.AtomicBoolean
 
-private const val COUNTER_TIME = 8000L
+private const val COUNTER_TIME = 12000L
 
 class Splash : AppCompatActivity() {
     lateinit var binding: ActivitySplashBinding

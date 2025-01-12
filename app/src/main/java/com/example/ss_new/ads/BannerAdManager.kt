@@ -10,7 +10,7 @@ import com.google.android.gms.ads.*
 
 class BannerAdManager {
 
-    private val AD_UNIT_ID = if (BuildConfig.DEBUG) "ca-app-pub-3940256099942544/6300978111" else "ca-app-pub-8472119687456393/2302658306"
+    private val AD_UNIT_ID = if (BuildConfig.DEBUG) "ca-app-pub-3940256099942544/6300978111" else "ca-app-pub-8472119687456393/2687981359"
 
     fun loadAdmobBanner(activity: Activity, bannerContainer: LinearLayout) {
         bannerContainer.gravity = Gravity.CENTER

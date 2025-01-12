@@ -16,7 +16,7 @@ import timber.log.Timber
 import java.util.*
 
 class AppOpenAdManager {
-    private val AD_UNIT_ID = if (BuildConfig.DEBUG) "ca-app-pub-3940256099942544/9257395921" else "ca-app-pub-8472119687456393/3232596594"
+    private val AD_UNIT_ID = if (BuildConfig.DEBUG) "ca-app-pub-3940256099942544/9257395921" else "ca-app-pub-8472119687456393/1315728939"
     private var loadTime: Long = 0
 
     private var appOpenAd: AppOpenAd? = null

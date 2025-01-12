@@ -20,11 +20,10 @@ import com.example.ss_new.app_utils.AllFilesUtils
 import com.example.ss_new.activites.LanguagesActivity
 import com.example.ss_new.activites.Splash
 import com.example.ss_new.activites.SubscriptionActivity
-import com.example.ss_new.activites.sending_receiving.WifiOrHotSpotSelectionActivity
+import com.example.ss_new.activites.sending_receiving.ActivityWifiConnection
 import com.example.ss_new.ads.BannerAdManager
 import com.example.ss_new.ads.InterstitialHelper
 import com.example.ss_new.app_utils.FileSelectionListener
-import com.example.ss_new.subscription.DataStoreManager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -161,17 +160,27 @@ class HomeFragment : Fragment(), FileSelectionListener {
                 InterstitialHelper.showSplashInterstitial(requireActivity(), object :
                     InterstitialHelper.InterstitialListener {
                     override fun onAdDismiss() {
-                        Toast.makeText(
-                            requireActivity(),
-                            getString(R.string.transferTxt),
-                            Toast.LENGTH_SHORT
-                        ).show()
-                        startActivity(
-                            WifiOrHotSpotSelectionActivity.getIntentForWifiOrHotSpotActivity(
-                                requireActivity(),
-                                "new"
+                        if (AllFilesUtils.isWiFiConnected(requireContext())) {
+                            startActivity(
+                                Intent(requireContext(), ActivityWifiConnection::class.java).putExtra(
+                                    "user",
+                                    "receiver"
+                                )
                             )
-                        )
+
+                        } else {
+                            Toast.makeText(
+                                requireContext(),
+                                getString(R.string.ensureWIFIOnTxt),
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+//                        startActivity(
+//                            WifiOrHotSpotSelectionActivity.getIntentForWifiOrHotSpotActivity(
+//                                requireActivity(),
+//                                "new"
+//                            )
+//                        )
                     }
                 })
             } else {

@@ -38,7 +38,9 @@ class WifiOrHotSpotSelectionActivity : AppCompatActivity() {
 
         binding.btnWifi.setOnClickListener {
             if(AllFilesUtils.isWiFiConnected(this)) {
-                startActivity(Intent(this,WifiConnectionJava::class.java).putExtra(WifiConnectionJava.phoneKey,intent.getStringExtra(phoneType).toString()))
+//                startActivity(Intent(this,WifiConnectionJava::class.java).putExtra(WifiConnectionJava.phoneKey,intent.getStringExtra(phoneType).toString()))
+                startActivity(Intent(this, ActivityWifiConnection::class.java).putExtra("user","sender"))
+
                 finish()
             }else{
                 Toast.makeText(this,getString(R.string.ensureWIFIOnTxt),Toast.LENGTH_SHORT).show()
