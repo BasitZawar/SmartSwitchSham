@@ -16,8 +16,8 @@ class ActivityWifiConnection : AppCompatActivity() {
     private lateinit var wifiManager: WifiManager
     private var wifiDirectFragment: WifiDirectFragment? = null
     private lateinit var intentFilter: IntentFilter
+    private lateinit var scannerFragment: scannerFragment
 
-    //    var adView: AdView? = null
     private val binding: ActivityWifiConnectionBinding by lazy {
         ActivityWifiConnectionBinding.inflate(
             layoutInflater
@@ -26,8 +26,6 @@ class ActivityWifiConnection : AppCompatActivity() {
     var currentPosition = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
         setContentView(binding.root)
         user = intent.getStringExtra("user").toString()
         Log.e("TAG", "onCreate user 1214: $user")
@@ -38,6 +36,7 @@ class ActivityWifiConnection : AppCompatActivity() {
             addAction(LocationManager.PROVIDERS_CHANGED_ACTION)
         }
         wifiDirectFragment = WifiDirectFragment()
+        scannerFragment = scannerFragment()
         wifiDirectFragment = WifiDirectFragment.newInstance(user)
         setUpConnection()
     }
@@ -48,10 +47,14 @@ class ActivityWifiConnection : AppCompatActivity() {
     }
 
     private fun setUpConnection() {
-        wifiDirectFragment?.let { updateFragment(it) }
+        if (user == "sender") {
+            wifiDirectFragment?.let { updateFragment(it) }
+        } else {
+            scannerFragment.let { updateFragment(it) }
+        }
     }
 
-    private fun updateFragment(fragment: Fragment) {
+    fun updateFragment(fragment: Fragment) {
         if (!isFinishing && !supportFragmentManager.isStateSaved) {
             this.supportFragmentManager.beginTransaction()
                 .replace(binding.frameConnection.id, fragment).commit()

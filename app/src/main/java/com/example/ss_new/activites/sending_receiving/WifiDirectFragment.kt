@@ -8,6 +8,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.net.MacAddress
 import android.net.wifi.WifiInfo
 import android.net.wifi.WifiManager
@@ -30,18 +31,22 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bumptech.glide.Glide
 import com.example.ss_new.adapters.recycler_adapter.WifiAvailableDeviceAdapter
 import com.example.ss_new.app_utils.data_classes.MReceiverFragment
 import com.example.ss_new.app_utils.data_classes.my_interfaces.MyClickCallbackInterface
 import com.example.ss_new.connection.MyClient
 import com.example.ss_new.connection.MyServer
 import com.example.ss_new.databinding.FragmentWifiDirectBinding
+import com.google.zxing.BarcodeFormat
+import com.google.zxing.WriterException
+import com.google.zxing.qrcode.QRCodeWriter
 import com.nabinbhandari.android.permissions.PermissionHandler
 import com.nabinbhandari.android.permissions.Permissions
 import java.net.InetAddress
 
 private const val KEY_USER = "key_user_type"
+private const val KEY_OPTIONAL = "key_user_type2"
+private const val KEY_OPTIONAL2 = "key_user_type3"
 
 class WifiDirectFragment : Fragment(), ConnectionInterface {
     private var binding: FragmentWifiDirectBinding? = null
@@ -50,6 +55,7 @@ class WifiDirectFragment : Fragment(), ConnectionInterface {
     private lateinit var wifiP2PChannel: WifiP2pManager.Channel
     var receiver: MReceiverFragment? = null
     private lateinit var intentFilter: IntentFilter
+    private var senderDevice: String = ""
     private val peersList: ArrayList<WifiP2pDevice> = ArrayList()
     private var devicesArrayList: ArrayList<String> = ArrayList()
     private lateinit var adapter: WifiAvailableDeviceAdapter
@@ -57,6 +63,7 @@ class WifiDirectFragment : Fragment(), ConnectionInterface {
     var gotIt = false
     var name = ""
     private var userType: String = ""
+    private var fromScanner: String = ""
     lateinit var attachedContext: Context
     lateinit var attachedActivity: Activity
 
@@ -64,6 +71,12 @@ class WifiDirectFragment : Fragment(), ConnectionInterface {
         super.onCreate(savedInstanceState)
         arguments?.let {
             userType = it.getString(KEY_USER).toString()
+        }
+        arguments?.let {
+            senderDevice = it.getString(KEY_OPTIONAL).toString()
+        }
+        arguments?.let {
+            fromScanner = it.getString(KEY_OPTIONAL2).toString()
         }
         Log.e("TESTTAG", "onCreate of wifiDirectFragment: $userType")
     }
@@ -83,14 +96,17 @@ class WifiDirectFragment : Fragment(), ConnectionInterface {
         }
         initView()
         initScanning()
+        if (fromScanner == "fromScanner") {
+            hideQrLayout()
+        } else {
+            showQrLayout()
+        }
         Log.e("TESTTAG", "onViewCreated: wifidirect fragment")
-
 
         binding?.btnRetry?.setOnClickListener {
             binding?.layoutLoading?.visibility = View.INVISIBLE
             binding?.layoutNoDevice?.visibility = View.INVISIBLE
             scanDevices()
-
         }
     }
 
@@ -99,7 +115,7 @@ class WifiDirectFragment : Fragment(), ConnectionInterface {
             adapter = WifiAvailableDeviceAdapter(it, devicesArrayList, object :
                 MyClickCallbackInterface {
                 override fun onItemClick(position: Int) {
-                    requestPairing(position, name1)
+                    requestPairing(position)
                 }
             })
             binding?.rv?.layoutManager = LinearLayoutManager(it)
@@ -240,7 +256,7 @@ class WifiDirectFragment : Fragment(), ConnectionInterface {
         })
     }
 
-    private fun requestPairing(pos: Int, name: String) {
+    private fun requestPairing(pos: Int) {
         val device = peersList[pos]
         val wifiConfig = WifiP2pConfig()
         wifiConfig.deviceAddress = device.deviceAddress
@@ -306,6 +322,14 @@ class WifiDirectFragment : Fragment(), ConnectionInterface {
                 Log.e("TESTTAG", "DEVICES 1 ${name}")
             }
             adapter.notifyDataSetChanged()
+            if (devicesArrayList.contains(senderDevice)) {
+                requestPairing(devicesArrayList.indexOf(senderDevice))
+                Log.d(
+                    TAG,
+                    "device found start connection now: ${devicesArrayList.indexOf(senderDevice)}"
+                )
+                senderDevice = ""
+            }
         }
     }
 
@@ -385,13 +409,102 @@ class WifiDirectFragment : Fragment(), ConnectionInterface {
     override fun onConnectionFailed() {
     }
 
+    fun hideQrLayout() {
+        binding?.qr?.visibility = View.GONE
+        binding?.layoutConnecting?.visibility = View.VISIBLE
+    }
+
+    fun showQrLayout() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            if (isAdded) getWifiP2pDeviceName(requireContext()) { deviceName1 ->
+                if (!deviceName1.isNullOrBlank()) {
+                    deviceName = deviceName1
+                    val qrCodeBitmap = generateQRCode(deviceName)
+                    binding?.deviceName?.text = deviceName
+                    qrCodeBitmap?.let {
+                        binding?.qrCodeImageView?.setImageBitmap(it)
+                    }
+                    Log.d("TESTTAG", "Device name: $deviceName1")
+//                WifiDirectFragment().scanDevices()
+                } else {
+                    Log.d("TESTTAG", "Permissions not granted or device name not available")
+                    Toast.makeText(
+                        requireContext(),
+                        "Device info request not supported on this version",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        } else {
+            Toast.makeText(
+                requireContext(),
+                "Device info request not supported on this version",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.Q)
+    fun getWifiP2pDeviceName(context: Context, onDeviceNameAvailable: (String?) -> Unit) {
+        val mManager: WifiP2pManager =
+            context.getSystemService(Context.WIFI_P2P_SERVICE) as WifiP2pManager
+        val wifiP2PChannel: WifiP2pManager.Channel =
+            mManager.initialize(context, Looper.getMainLooper(), null)
+
+        if (ActivityCompat.checkSelfPermission(
+                context, Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED || (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && ActivityCompat.checkSelfPermission(
+                context, Manifest.permission.NEARBY_WIFI_DEVICES
+            ) != PackageManager.PERMISSION_GRANTED)
+        ) {
+            // Return null if permissions are not granted
+            onDeviceNameAvailable(null)
+            return
+        }
+
+        // Request device info
+        mManager.requestDeviceInfo(wifiP2PChannel,
+            @RequiresApi(Build.VERSION_CODES.Q) object : WifiP2pManager.DeviceInfoListener {
+                override fun onDeviceInfoAvailable(wifiP2pDevice: WifiP2pDevice?) {
+                    val deviceName = wifiP2pDevice?.deviceName ?: "Unknown Device"
+                    onDeviceNameAvailable(deviceName) // Pass the device name to the callback
+                }
+            })
+    }
+
+    private fun generateQRCode(text: String): Bitmap? {
+        val size = 512 // Size of the QR code
+        val qrCodeWriter = QRCodeWriter()
+        return try {
+            val bitMatrix = qrCodeWriter.encode(text, BarcodeFormat.QR_CODE, size, size)
+            val width = bitMatrix.width
+            val height = bitMatrix.height
+            val bmp = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565)
+            for (x in 0 until width) {
+                for (y in 0 until height) {
+                    bmp.setPixel(
+                        x, y, if (bitMatrix.get(x, y)) 0xFF000000.toInt() else 0xFFFFFFFF.toInt()
+                    )
+                }
+            }
+            bmp
+        } catch (e: WriterException) {
+            e.printStackTrace()
+            null
+        }
+    }
+
     companion object {
         var name1 = ""
-        fun newInstance(param1: String) = WifiDirectFragment().apply {
-            arguments = Bundle().apply {
-                Log.e("TAG", "newInstance param1 :$param1")
-                putString(KEY_USER, param1)
+        var deviceName: String = ""
+        fun newInstance(param1: String, param2: String? = null, param3: String? = null) =
+            WifiDirectFragment().apply {
+                arguments = Bundle().apply {
+                    putString(KEY_USER, param1)
+                    param2?.let { putString(KEY_OPTIONAL, it) }
+                    param3?.let { putString(KEY_OPTIONAL2, it) }
+                }
+
             }
-        }
     }
 }

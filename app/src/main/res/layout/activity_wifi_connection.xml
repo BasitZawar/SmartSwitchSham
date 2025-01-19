@@ -53,6 +53,7 @@
         android:layout_margin="@dimen/_15sdp"
         android:fontFamily="@font/poppins_medium"
         android:gravity="start"
+        android:visibility="gone"
         android:text="@string/searchingForNearbyDevices"
         android:textColor="@color/black"
         android:textSize="16sp"

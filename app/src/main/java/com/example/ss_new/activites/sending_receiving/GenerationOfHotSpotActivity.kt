@@ -19,8 +19,8 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.example.ss_new.R
-import com.example.ss_new.app_utils.data_classes.QrCodeGeneratorClass
 import com.example.ss_new.app_utils.data_classes.PORTNO
+import com.example.ss_new.app_utils.data_classes.QrCodeGeneratorClass
 import com.example.ss_new.app_utils.data_classes.connection.Sockets
 import com.example.ss_new.app_utils.data_classes.my_interfaces.SuccessAndFailureInterface
 import com.example.ss_new.app_utils.data_classes.ss_models.ConnectionModel

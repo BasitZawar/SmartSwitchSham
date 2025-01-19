@@ -5,14 +5,14 @@ import android.content.Intent
 import android.location.LocationManager
 import android.net.Uri
 import android.net.wifi.WifiManager
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.ss_new.R
 import com.example.ss_new.ads.NativeAdManager
-import com.example.ss_new.databinding.ActivityWifiOrHotBinding
 import com.example.ss_new.app_utils.AllFilesUtils
+import com.example.ss_new.databinding.ActivityWifiOrHotBinding
 
 class WifiOrHotSpotSelectionActivity : AppCompatActivity() {
 

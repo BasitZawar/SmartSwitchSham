@@ -12,7 +12,6 @@ import android.net.wifi.WifiManager;
 import android.net.wifi.WpsInfo;
 import android.net.wifi.p2p.WifiP2pConfig;
 import android.net.wifi.p2p.WifiP2pDevice;
-import android.net.wifi.p2p.WifiP2pInfo;
 import android.net.wifi.p2p.WifiP2pManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -23,15 +22,12 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.ss_new.adapters.recycler_adapter.WifiAvailableDeviceAdapter;
-import com.example.ss_new.ads.NativeAdManager;
-import com.example.ss_new.app_utils.data_classes.WifiReceiver;
 import com.example.ss_new.app_utils.data_classes.PORTNO;
+import com.example.ss_new.app_utils.data_classes.WifiReceiver;
 import com.example.ss_new.app_utils.data_classes.connection.ConnectionHelper;
 import com.example.ss_new.app_utils.data_classes.connection.Sockets;
-import com.example.ss_new.app_utils.data_classes.my_interfaces.MyClickCallbackInterface;
 import com.example.ss_new.app_utils.data_classes.my_interfaces.SuccessAndFailureInterface;
 import com.example.ss_new.databinding.ActivityWifiConnectionBinding;
 import com.nabinbhandari.android.permissions.PermissionHandler;
@@ -43,8 +39,6 @@ import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
-
-import timber.log.Timber;
 
 public class WifiConnectionJava extends AppCompatActivity implements SuccessAndFailureInterface {
 
